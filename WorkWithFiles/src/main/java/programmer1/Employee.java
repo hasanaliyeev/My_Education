@@ -7,7 +7,7 @@ public class Employee implements Serializable {
   String name;
   String department;
   int age;
-  double salary;
+  transient double salary;
   Car car;
 
   public Employee(String name, String department, int age, double salary, Car car) {
