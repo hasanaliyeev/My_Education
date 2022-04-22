@@ -27,6 +27,13 @@ public class ChannelBufferEx1 {
       }
       System.out.println(builder);
 
+      String text = "\nАпельсин — плод апельсинового дерева (Citrus).\n"
+          + "Сложно поверить, но исторически апельсин представляет собой гибрид мандарина\n"
+          + "(Citrus ) и помело (Citrus maxima). Однако появился он так давно, что сейчас\n";
+
+      ByteBuffer buffer1 = ByteBuffer.wrap(text.getBytes());
+      channel.write(buffer1);
+
     } catch (IOException e) {
       e.printStackTrace();
     }
