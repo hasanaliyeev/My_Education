@@ -7,7 +7,7 @@ public class ChannelBufferEx4 {
 
   public static void main(String[] args) {
 
-    try(RandomAccessFile file = new RandomAccessFile("data/test9.txt","r");
+    try (RandomAccessFile file = new RandomAccessFile("data/test9.txt", "r");
         FileChannel channel = file.getChannel();
     ) {
       ByteBuffer buffer = ByteBuffer.allocate(5);
@@ -24,7 +24,7 @@ public class ChannelBufferEx4 {
       buffer.compact();
       channel.read(buffer);
       buffer.flip();
-      while (buffer.hasRemaining()){
+      while (buffer.hasRemaining()) {
         System.out.println((char) buffer.get());
       }
       System.out.println("-----------------------------");
@@ -38,23 +38,15 @@ public class ChannelBufferEx4 {
       System.out.println((char) buffer.get());//i
       buffer.reset();
       System.out.println();
-      while (buffer.hasRemaining()){
+      while (buffer.hasRemaining()) {
         System.out.println((char) buffer.get());
       }
 
 
-    } catch (IOException e){
+    } catch (IOException e) {
       e.printStackTrace();
     }
 
   }
 
-}
-
-class Test {
-
-  public static void main(String[] args) {
-
-
-  }
 }
