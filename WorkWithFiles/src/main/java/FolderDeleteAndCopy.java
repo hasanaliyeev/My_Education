@@ -5,41 +5,45 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-public class FolderDelete {
+public class FolderDeleteAndCopy {
 
   public static void main(String[] args) throws Exception {
 
     Path folder_A = Paths.get("C:/Users/aliye/Desktop/A");
     Path folder_B = Paths.get("C:/Users/aliye/Desktop/B");
 
-    //delete("C:/Users/aliye/Desktop/E");
-    copy("C:/Users/aliye/Desktop/Programs", "C:/Users/aliye/Desktop/E");
+    //delete("C:/Users/aliye/Desktop/OOO");
+    copy("C:/Users/aliye/Desktop/X", "C:/Users/aliye/Desktop/Y");
 
   }
 
-  public static void copy(String a, String b) throws Exception {
-    File file = new File(a);
+  public static void copy(String src, String dst) throws Exception {
+    File file = new File(src);
 
-    Path from = Paths.get(a);
-    Path to = Paths.get(b);
+    Path source = Paths.get(src);
+    Path destination = Paths.get(dst);
 
     if (file.isFile()) {
-      Files.copy(from, to.resolve(from.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-
+      Path newDestination = destination.resolve(source.relativize(file.toPath()));
+      Files.copy(source, newDestination,
+          StandardCopyOption.REPLACE_EXISTING);
     }
     if (file.isDirectory()) {
-      Files.copy(from, to.resolve(from.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-
+      Path newDestination = destination.resolve(source.relativize(file.toPath()));
+      Files.copy(source, newDestination,
+          StandardCopyOption.REPLACE_EXISTING);
     }
 
     File[] folders = file.listFiles();
     if (folders != null) {
       for (File fl : folders) {
         if (fl.isFile()) {
-          copy(fl.getAbsolutePath(), to.resolve(fl.toPath().getParent().getFileName()).toString());
+          Path newDestination = destination.resolve(source.relativize(fl.toPath()));
+          Files.copy(fl.toPath(), newDestination, StandardCopyOption.REPLACE_EXISTING);
         }
         if (fl.isDirectory()) {
-          copy(fl.getAbsolutePath(), to.resolve(fl.toPath().getParent().getFileName()).toString());
+          Path newDestination = destination.resolve(source.relativize(fl.toPath()));
+          copy(fl.toString(), newDestination.toString());
         }
 
       }
