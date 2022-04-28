@@ -62,3 +62,47 @@ class ZipCreations{
     }
   }
 }
+
+class ZipFolderCreation{
+
+  public static void main(String[] args) {
+
+    String path = "C:/Users/aliye/Desktop/";
+
+    String in = "C:/Users/aliye/Desktop/Folders";
+    String out = "C:/Users/aliye/Desktop/archive.zip";
+
+    try {
+      FileOutputStream outputStream = new FileOutputStream(out);
+      ZipOutputStream zipOut = new ZipOutputStream(outputStream);
+      writeFileToZip(new File(in), zipOut, "");
+      zipOut.flush();
+      zipOut.close();
+      outputStream.close();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void writeFileToZip(File file, ZipOutputStream zipOut, String path)
+      throws Exception {
+
+    if (file.isDirectory()) {
+      String folder = path + file.getName() + "/";
+      ZipEntry entry = new ZipEntry(folder);
+      zipOut.putNextEntry(entry);
+      zipOut.closeEntry();
+      File[] files = file.listFiles();
+      for (File subfile : files) {
+        writeFileToZip(subfile, zipOut, folder);
+      }
+      return;
+    }
+    ZipEntry entry = new ZipEntry(path + file.getName());
+    zipOut.putNextEntry(entry);
+    byte[] bytes = Files.readAllBytes(Paths.get(file.getAbsolutePath()));
+    zipOut.write(bytes);
+
+  }
+}
