@@ -1,5 +1,8 @@
 import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.util.Zip4jConstants;
+import net.lingala.zip4j.model.enums.AesKeyStrength;
+import net.lingala.zip4j.model.enums.CompressionLevel;
+import net.lingala.zip4j.model.enums.CompressionMethod;
+import net.lingala.zip4j.model.enums.EncryptionMethod;
 
 public class ParametersContainer {
 
@@ -8,11 +11,10 @@ public class ParametersContainer {
   public static ZipParameters getParameters(){
     if(parameters == null){
       parameters = new ZipParameters();
-      parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
-      parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_ULTRA);
+      parameters.setCompressionMethod(CompressionMethod.DEFLATE);
+      parameters.setCompressionLevel(CompressionLevel.ULTRA);
       parameters.setEncryptFiles(true);
-      parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_AES);
-      parameters.setAesKeyStrength(Zip4jConstants.AES_STRENGTH_256);
+      parameters.setEncryptionMethod(EncryptionMethod.ZIP_STANDARD);
     }
     return parameters;
   }

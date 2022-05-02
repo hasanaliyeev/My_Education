@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUIForm">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="735" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <hspacer id="8be87">
+        <constraints border-constraint="North"/>
+      </hspacer>
+      <vspacer id="7d96">
+        <constraints border-constraint="West"/>
+      </vspacer>
+      <vspacer id="8c550">
+        <constraints border-constraint="East"/>
+      </vspacer>
+      <grid id="2ee4b" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="e19a2" class="javax.swing.JTextField" binding="filePath">
+            <constraints/>
+            <properties>
+              <editable value="false"/>
+              <preferredSize width="500" height="30"/>
+            </properties>
+          </component>
+          <component id="7aeff" class="javax.swing.JButton" binding="selectButton">
+            <constraints/>
+            <properties>
+              <actionCommand value="Button"/>
+              <label value="Выберите файл или папку"/>
+              <text value="Выберите файл или папку"/>
+            </properties>
+          </component>
+          <component id="fc0a1" class="javax.swing.JButton" binding="actionButton">
+            <constraints/>
+            <properties>
+              <text value="Зашифровать"/>
+            </properties>
+          </component>
+          <component id="1675e" class="javax.swing.JRadioButton" binding="radioButton1" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="RadioButton"/>
+            </properties>
+          </component>
+          <component id="ecff1" class="javax.swing.JPasswordField" binding="passwordField1" default-binding="true">
+            <constraints/>
+            <properties/>
+          </component>
+          <component id="38db1" class="javax.swing.JSpinner" binding="spinner1" default-binding="true">
+            <constraints/>
+            <properties/>
+          </component>
+          <scrollpane id="7b593">
+            <constraints/>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </scrollpane>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

@@ -7,43 +7,36 @@
     <properties/>
     <border type="none"/>
     <children>
-      <hspacer id="436d8">
+      <hspacer id="534">
         <constraints border-constraint="North"/>
       </hspacer>
-      <vspacer id="ae644">
+      <vspacer id="328ef">
         <constraints border-constraint="West"/>
       </vspacer>
-      <vspacer id="bab14">
+      <vspacer id="881c7">
         <constraints border-constraint="East"/>
       </vspacer>
-      <grid id="95a21" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+      <grid id="82351" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints border-constraint="Center"/>
-        <properties>
-          <foreground color="-4502954"/>
-          <inheritsPopupMenu value="false"/>
-        </properties>
+        <properties/>
         <border type="none"/>
         <children>
-          <component id="75c72" class="javax.swing.JTextField" binding="filePath">
+          <component id="21199" class="javax.swing.JTextField" binding="textField1" default-binding="true">
             <constraints/>
             <properties>
-              <editable value="false"/>
-              <preferredSize width="500" height="30"/>
+              <preferredSize width="180" height="30"/>
             </properties>
           </component>
-          <component id="26e3" class="javax.swing.JButton" binding="selectButton">
-            <constraints/>
-            <properties>
-              <foreground color="-15592941"/>
-              <hideActionText value="false"/>
-              <text value="Выберите файл или папку"/>
-            </properties>
-          </component>
-          <component id="32a8e" class="javax.swing.JButton" binding="actionButton">
+          <component id="3253a" class="javax.swing.JButton" binding="button1" default-binding="true">
             <constraints/>
             <properties>
               <text value="Button"/>
-              <visible value="false"/>
+            </properties>
+          </component>
+          <component id="ee48e" class="javax.swing.JButton" binding="button2" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Button"/>
             </properties>
           </component>
         </children>

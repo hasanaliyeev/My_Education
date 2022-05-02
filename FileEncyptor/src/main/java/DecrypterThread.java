@@ -1,5 +1,5 @@
 import java.io.File;
-import net.lingala.zip4j.core.ZipFile;
+import net.lingala.zip4j.ZipFile;
 
 public class DecrypterThread extends Thread{
 
@@ -15,20 +15,15 @@ public class DecrypterThread extends Thread{
     this.file = file;
   }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
   @Override
   public void run() {
     onStart();
     try {
       String outPath = getOutputPath();
       ZipFile zipFile = new ZipFile(file);
-      zipFile.setPassword(password);
       zipFile.extractAll(outPath);
     } catch (Exception e) {
-      form.showWarning("Пароль указан неверно!");
+      form.showWarning(e.getMessage());
     }
     onFinish();
   }
@@ -43,10 +38,10 @@ public class DecrypterThread extends Thread{
   }
 
   private String getOutputPath() {
-    String path = file.getAbsolutePath().replaceAll("\\.enc$", "");
     for (int i = 1; ; i++) {
       String number = i > 1 ? Integer.toString(i) : "";
-      if (!new File(path + number).exists()) {
+      String path = file.getAbsolutePath().replaceAll("\\.zip$", "") + number;
+      if (!new File(path).exists()) {
         return path;
       }
     }

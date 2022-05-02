@@ -1,12 +1,15 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentListener;
+import java.awt.image.ComponentColorModel;
 import java.io.File;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import net.lingala.zip4j.core.ZipFile;
+import net.lingala.zip4j.ZipFile;
+
 
 public class GUIForm {
 
@@ -40,17 +43,10 @@ public class GUIForm {
           return;
         }
 
-        String password = JOptionPane.showInputDialog("Введите пароль:");
-
-        if (password == null || password.length() == 0) {
-          showWarning("Пароль не указан");
-          return;
-        }
-
         if (encryptedFileSelected) {
-          decryptFile(password);
+          decryptFile();
         } else {
-          encryptFile(password);
+          encryptFile();
         }
       }
     });
@@ -66,17 +62,15 @@ public class GUIForm {
     actionButton.setEnabled(enabled);
   }
 
-  private void encryptFile(String password) {
+  private void encryptFile() {
     EncrypterThread thread = new EncrypterThread(this);
     thread.setFile(selectedFile);
-    thread.setPassword(password);
     thread.start();
   }
 
-  private void decryptFile(String password) {
+  private void decryptFile() {
     DecrypterThread thread = new DecrypterThread(this);
     thread.setFile(selectedFile);
-    thread.setPassword(password);
     thread.start();
   }
 
@@ -89,9 +83,9 @@ public class GUIForm {
     filePath.setText(selectedFile.getAbsolutePath());
     try {
       ZipFile zipFile = new ZipFile(selectedFile);
-      encryptedFileSelected = zipFile.isValidZipFile() && zipFile.isEncrypted();
+      encryptedFileSelected = zipFile.isValidZipFile();
       actionButton.setText(
-          zipFile.isValidZipFile() && zipFile.isEncrypted() ? decryptAction : encryptAction);
+          zipFile.isValidZipFile() ? decryptAction : encryptAction);
 
     } catch (Exception ex) {
       ex.printStackTrace();

@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -33,12 +34,12 @@ public class ZipCreation {
   }
 }
 
-class ZipCreations{
+class ZipCreations {
 
   public static void main(String[] args) {
     String path = "C:/Users/aliye/Desktop/";
 
-    String[] in = {"orange.jpeg", "file.txt", };
+    String[] in = {"orange.jpeg", "file.txt",};
     String out = "C:/Users/aliye/Desktop/archive.zip";
 
     try {
@@ -63,7 +64,7 @@ class ZipCreations{
   }
 }
 
-class ZipFolderCreation{
+class ZipFolderCreation {
 
   public static void main(String[] args) {
 
@@ -94,8 +95,8 @@ class ZipFolderCreation{
       zipOut.putNextEntry(entry);
       zipOut.closeEntry();
       File[] files = file.listFiles();
-      for (File subfile : files) {
-        writeFileToZip(subfile, zipOut, folder);
+      for (File subFile : files) {
+        writeFileToZip(subFile, zipOut, folder);
       }
       return;
     }
@@ -105,4 +106,45 @@ class ZipFolderCreation{
     zipOut.write(bytes);
 
   }
+}
+
+class Test {
+
+  public static void main(String[] args) {
+
+    String in = "C:/Users/aliye/Desktop/";
+    String out = "C:/users/aliye/Desktop/folders.zip";
+
+    try {
+      FileOutputStream outputStream = new FileOutputStream(out);
+      ZipOutputStream zipOut = new ZipOutputStream(outputStream);
+
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+  }
+
+  public static void writeFileToZip(File file, ZipOutputStream zipOut, String path)
+      throws IOException {
+
+    if (file.isDirectory()) {
+      String folder = path + file.getName() + "/";
+      ZipEntry entry = new ZipEntry(folder);
+      zipOut.putNextEntry(entry);
+      zipOut.closeEntry();
+      File[] files = file.listFiles();
+      for (File subFile : files) {
+        writeFileToZip(subFile, zipOut, folder);
+      }
+      return;
+    }
+    ZipEntry entry = new ZipEntry(path + file.getName());
+    zipOut.putNextEntry(entry);
+    byte[] bytes = Files.readAllBytes(Paths.get(file.getAbsolutePath()));
+    zipOut.write(bytes);
+
+  }
+
 }
