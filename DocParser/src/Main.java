@@ -14,18 +14,17 @@ public class Main {
     Elements elements = doc.select("li.tabs-list__item");
     elements.forEach(element -> System.out.println(element.text()));
 
-
   }
 
-  public static String parseFile(String path){
+  public static String parseFile(String path) {
     StringBuilder builder = new StringBuilder();
 
     try {
       List<String> lines = Files.readAllLines(Paths.get(path));
-      lines.forEach(line-> builder.append(line + "\n"));
+      lines.forEach(line -> builder.append(line + "\n"));
 
 
-    } catch (Exception ex){
+    } catch (Exception ex) {
       ex.printStackTrace();
     }
 
