@@ -1,0 +1,19 @@
+{
+  "skills": [
+    "java",
+    "MySql",
+    "kotlin"
+  ],
+  "name": "Gasan Aliev",
+  "position": [
+    "Founder",
+    "IT Developer",
+    "Economist"
+  ],
+  "salary": {
+    "2017": 30000,
+    "2022": 60000,
+    "2010": 20000
+  },
+  "age": 30
+}

@@ -1,22 +1,22 @@
 public class Station {
 
-  private Line line;
   private String name;
+  private Line line;
 
   public Station(String name, Line line) {
     this.name = name;
     this.line = line;
   }
 
-  public Line getLine(){
-    return line;
-  }
-  public String getName(){
+  public String getName() {
     return name;
+  }
+
+  public Line getLine() {
+    return line;
   }
 
   public String toString(){
     return name;
   }
-
 }

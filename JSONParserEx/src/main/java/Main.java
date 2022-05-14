@@ -1,7 +1,3 @@
-import java.io.FileReader;
-import java.io.Reader;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 public class Main {
 
@@ -10,7 +6,10 @@ public class Main {
 
   public static void main(String[] args) throws Exception {
 
-
+    JSONSimpleParser parser = new JSONSimpleParser();
+    Root root = parser.parse();
+    //root.printLineInfo();
+    System.out.println(root.getLines());
 
   }
 

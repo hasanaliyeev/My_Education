@@ -1,0 +1,41 @@
+{
+  "students": [
+    {
+      "id": 2,
+      "name": "Alsu Alieva",
+      "age": 3
+    },
+    {
+      "id": 4,
+      "name": "Gunel Alieva",
+      "age": 27
+    },
+    {
+      "id": 6,
+      "name": "Murad Bakhtiarov",
+      "age": 14
+    },
+    {
+      "id": 7,
+      "name": "Leman Bakhtiarova",
+      "age": 30
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "name": "Gasan Aliev",
+      "age": 30
+    },
+    {
+      "id": 3,
+      "name": "Farid Aliev",
+      "age": 27
+    },
+    {
+      "id": 5,
+      "name": "Zaxra Bakhtiarova",
+      "age": 22
+    }
+  ]
+}
