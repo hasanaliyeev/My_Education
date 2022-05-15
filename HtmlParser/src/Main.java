@@ -19,7 +19,7 @@ public class Main {
     String htmlFile = parseFile("data/code.html");
 
     Document doc = Jsoup.parse(htmlFile);
-    Document document = Jsoup.connect("https://lenta.ru/").get();
+    Document document = Jsoup.connect("https://turbo.az/").maxBodySize(0).get();
 
 //    getImagePath(document).forEach(System.out::println);
     imageDownloader(document,DEST_PATH);
