@@ -60,7 +60,7 @@ public class MetroParser {
 
       Elements classElement = element.select("p");
       classElement.forEach(elm -> {
-        Elements elementsSpan = elm.select("span.t-icon-metroln");
+          Elements elementsSpan = elm.select("span.t-icon-metroln");
         if (elementsSpan.hasAttr("title")) {
           JSONArray connArray = new JSONArray();
 
