@@ -1,6 +1,7 @@
 package HibernateExperiments;
 
-import HibernateExperiments.core.Course;
+import HibernateExperiments.core.Student;
+import HibernateExperiments.core.Teacher;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -14,12 +15,16 @@ public class Main {
 
     StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
     Metadata metadata = new MetadataSources(registry).getMetadataBuilder().build();
-    SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
+    SessionFactory sessionFactory = metadata.buildSessionFactory();
 
     Session session = sessionFactory.openSession();
+    Student student = session.get(Student.class,1);
+    System.out.println(student.getRegistrationDate());
+    System.out.println();
 
-    Course course = session.get(Course.class,1);
-    System.out.println(course.getName());
+    Teacher teacher = session.get(Teacher.class,7);
+    System.out.println(teacher.getId() + " " + teacher.getName() + " " + teacher.getSalary() + " " + teacher.getAge());
+    System.out.println();
 
     sessionFactory.close();
 
