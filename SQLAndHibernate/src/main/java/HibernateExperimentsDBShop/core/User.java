@@ -1,6 +1,7 @@
-package HibernateExperiments2.core;
+package HibernateExperimentsDBShop.core;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,37 +10,35 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Date;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "teachers")
-public class Teacher {
+@Table(name = "user")
+@Setter
+@Getter
+public class User {
 
-  @Setter
-  @Getter
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @Setter
-  @Getter
   private String name;
 
-  @Setter
-  @Getter
-  private int salary;
+  private String email;
 
-  @Setter
-  @Getter
-  private int age;
+  private String password;
 
-  @Setter
-  @Getter
+  @Column(name = "reg_date")
+  private Date regDate;
+
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "courses", joinColumns = {
-      @JoinColumn(name = "teacher_id")}, inverseJoinColumns = {@JoinColumn(name = "id")})
-  private List<Course> courses;
+  @JoinTable(name = "`order`",
+      joinColumns = {@JoinColumn(name = "user_id")},
+      inverseJoinColumns = {@JoinColumn(name = "id")}
+  )
+  private List<Order> orders;
 
 }
