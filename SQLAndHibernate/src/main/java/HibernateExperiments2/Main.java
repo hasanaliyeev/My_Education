@@ -3,6 +3,11 @@ package HibernateExperiments2;
 import HibernateExperiments2.core.Course;
 import HibernateExperiments2.core.Student;
 import HibernateExperiments2.core.Teacher;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -21,12 +26,20 @@ public class Main {
     SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
 
     Session session = sessionFactory.openSession();
-    Transaction transaction = session.beginTransaction();
+//    Transaction transaction = session.beginTransaction();
 
-    Teacher teacher = session.get(Teacher.class,20);
-    teacher.getCourses().forEach(x-> System.out.println(x.getName()));
+    CriteriaBuilder builder = session.getCriteriaBuilder();
+    CriteriaQuery<Course> query = builder.createQuery(Course.class);
+    Root<Course> root = query.from(Course.class);
 
-    transaction.commit();
+    query.select(root).where(builder.greaterThan(root.get("price"),100000)).orderBy(builder.desc(root.get("price")));
+
+    List<Course> courses = session.createQuery(query).setMaxResults(3).getResultList();
+    courses.forEach(course -> {
+      System.out.println(course.getName() + " - " + course.getPrice());
+    });
+
+//    transaction.commit();
     sessionFactory.close();
 
   }

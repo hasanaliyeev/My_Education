@@ -1,7 +1,7 @@
 package HibernateExperiments;
 
-import HibernateExperiments.core.Student;
-import HibernateExperiments.core.Teacher;
+import HibernateExperiments.core.Course;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -18,13 +18,12 @@ public class Main {
     SessionFactory sessionFactory = metadata.buildSessionFactory();
 
     Session session = sessionFactory.openSession();
-    Student student = session.get(Student.class,1);
-    System.out.println(student.getRegistrationDate());
-    System.out.println();
 
-    Teacher teacher = session.get(Teacher.class,7);
-    System.out.println(teacher.getId() + " " + teacher.getName() + " " + teacher.getSalary() + " " + teacher.getAge());
-    System.out.println();
+    String hql = "From " + Course.class.getSimpleName() + " Where studentsCount > 100 and studentsCount < 300";
+
+    List<Course> courses = session.createQuery(hql).list();
+    courses.forEach(course -> System.out.println(course.getId() + " " + course.getName() +
+        " " + course.getPrice() + " " + course.getStudentsCount()));
 
     sessionFactory.close();
 
